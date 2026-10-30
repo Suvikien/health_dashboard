@@ -5,3 +5,4 @@ dist/
 !.env.example
 .idea/
 *.log
+backend/csv/observations.csv
