@@ -47,7 +47,24 @@ CREATE TABLE medications
     FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
 );
 
+CREATE TABLE observations
+(
+    observation_id          INT auto_increment PRIMARY KEY,
+    patient_id              CHAR(36)     NOT NULL,
+    encounter_id            CHAR(36)     NOT NULL,
+    observation_date        DATETIME,
+    category                VARCHAR(30)  NOT NULL,
+    observation_description VARCHAR(255) NOT NULL,
+    value_numeric           DECIMAL(10, 2),
+    value_text              VARCHAR(255),
+    observation_units       VARCHAR(10),
+    observation_types       VARCHAR(20)  NOT NULL,
+    FOREIGN KEY (encounter_id) REFERENCES encounters (encounter_id),
+    FOREIGN KEY (patient_id) REFERENCES patients (patient_id)
+);
+
 DESCRIBE patients;
 DESCRIBE encounters;
 DESCRIBE conditions;
 DESCRIBE medications;
+DESCRIBE observations;
