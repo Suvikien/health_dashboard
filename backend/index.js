@@ -13,11 +13,11 @@ app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });
 });
 
-app.get("/api/stats", async (req, res) => { // if someone visits /api/stats/ run this
+app.get("/api/stats", async (req, res) => { // if someone visits /api/stats/ run this. Endpoint
     try{
         const [rows] = await pool.query("SELECT COUNT(*) AS total FROM patients"); // loop through and count the amount of lines
         const [encounterRows] = await pool.query("SELECT COUNT(*) AS total FROM encounters"); // loop through and count the amount of lines
-        res.json({ patients: rows[0].total, encounterRows: encounterRows[0].total });
+        res.json({ patients: rows[0].total, encounters: encounterRows[0].total });
     } catch (err){
         res.status(500).json({error: "Failed to load stats"});
     }
